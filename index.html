@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>memory</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.12.0/lodash.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+</head>
+
+<body>
+    <a class="start " type="button" id="start"  onclick="start()" data-scroll="#nav_q">Start</a>
+    <div id="app" class="container">
+        <div class="header">
+            <div><span class="label">Time:</span> <span class="value">{{ time }} </span></div>
+            <div><span class="label">Score:</span> <span class="value">{{ score }} </span></div>
+        </div>
+        <div class="cards">
+            <div class="card" v-for="card in cards" :class="{ flipped: card.flipped, found: card.found }" @click="flipCard(card)">
+                <div class="back"></div>
+                <div class="front" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
+            </div>
+        </div>
+        <div class="splash" v-if="showSplash">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="title">Score: {{ score + " ♡" }} </div>
+                <button @click="resetGame()">play again!</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js" type="text/javascript"></script>
+</body>
+
+</html>
